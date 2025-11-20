@@ -41,7 +41,7 @@ def load_quests(filename="data/quests.txt"):
     # - FileNotFoundError → raise MissingDataFileError
     # - Invalid format → raise InvalidDataFormatError
     # - Corrupted/unreadable data → raise CorruptedDataError
-    pass
+    
 
     if not os.path.exists(filename):
         raise MissingDataFileError(f"Missing quest file: {filename}")
@@ -83,7 +83,7 @@ def load_items(filename="data/items.txt"):
     """
     # TODO: Implement this function
     # Must handle same exceptions as load_quests
-    pass
+    
 
     if not os.path.exists(filename):
         raise MissingDataFileError(f"Missing item file: {filename}")
@@ -121,7 +121,7 @@ def validate_quest_data(quest_dict):
     # TODO: Implement validation
     # Check that all required keys exist
     # Check that numeric values are actually numbers
-    pass
+    
 
     required = [
         "quest_id",
@@ -155,7 +155,7 @@ def validate_item_data(item_dict):
     Raises: InvalidDataFormatError if missing required fields or invalid type
     """
     # TODO: Implement validation
-    pass
+    
 
     required = [
         "item_id",
@@ -189,7 +189,7 @@ def create_default_data_files():
     # Create data/ directory if it doesn't exist
     # Create default quests.txt and items.txt files
     # Handle any file permission errors appropriately
-    pass
+    
 
     if not os.path.exists("data"):
         os.makedirs("data")
@@ -243,7 +243,7 @@ def parse_quest_block(lines):
     # Split each line on ": " to get key-value pairs
     # Convert numeric strings to integers
     # Handle parsing errors gracefully
-    pass
+    
 
     quest = {}
 
@@ -289,7 +289,7 @@ def parse_item_block(lines):
     Raises: InvalidDataFormatError if parsing fails
     """
     # TODO: Implement parsing logic
-    pass
+    
 
     item = {}
 

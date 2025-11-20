@@ -47,7 +47,7 @@ def create_character(name, character_class):
     # - inventory=[], active_quests=[], completed_quests=[]
     
     # Raise InvalidCharacterClassError if class not in valid list
-    pass
+    
 
     valid = ("Warrior", "Mage", "Rogue", "Cleric")
     if character_class not in valid:
@@ -106,7 +106,7 @@ def save_character(character, save_directory="data/save_games"):
     # Create save_directory if it doesn't exist
     # Handle any file I/O errors appropriately
     # Lists should be saved as comma-separated values
-    pass
+    
 
     if not os.path.exists(save_directory):
         try:
@@ -161,7 +161,7 @@ def load_character(character_name, save_directory="data/save_games"):
     # Try to read file → SaveFileCorruptedError
     # Validate data format → InvalidSaveDataError
     # Parse comma-separated lists back into Python lists
-    pass
+    
 
     filename = os.path.join(save_directory, f"{character_name}_save.txt")
 
@@ -177,10 +177,13 @@ def load_character(character_name, save_directory="data/save_games"):
     data = {}
     for line in lines:
         if ": " not in line:
-            raise InvalidSaveDataError("Malformed line in save file")
+        # For empty lists, allow lines like "INVENTORY:"
+            if any(line.startswith(k) for k in ("INVENTORY", "ACTIVE_QUESTS", "COMPLETED_QUESTS")):
+                key = line.strip(":")
+                data[key.lower()] = []
+                continue
+            raise InvalidSaveDataError(f"Malformed line in save file: '{line}'")
         key, value = line.split(": ", 1)
-        key = key.strip()
-        value = value.strip()
 
         # Map keys to internal data types
         if key == "NAME":
@@ -250,7 +253,7 @@ def list_saved_characters(save_directory="data/save_games"):
     # TODO: Implement this function
     # Return empty list if directory doesn't exist
     # Extract character names from filenames
-    pass
+    
 
     if not os.path.exists(save_directory):
         return []
@@ -277,7 +280,7 @@ def delete_character(character_name, save_directory="data/save_games"):
     """
     # TODO: Implement character deletion
     # Verify file exists before attempting deletion
-    pass
+    
 
     filename = os.path.join(save_directory, f"{character_name}_save.txt")
     if not os.path.exists(filename):
@@ -314,7 +317,7 @@ def gain_experience(character, xp_amount):
     # Add experience
     # Check for level up (can level up multiple times)
     # Update stats on level up
-    pass
+    
 
     if is_character_dead(character):
         raise CharacterDeadError("Cannot gain experience: character is dead")
@@ -355,7 +358,7 @@ def add_gold(character, amount):
     # TODO: Implement gold management
     # Check that result won't be negative
     # Update character's gold
-    pass
+    
 
     try:
         amount = int(amount)
@@ -381,7 +384,7 @@ def heal_character(character, amount):
     # TODO: Implement healing
     # Calculate actual healing (don't exceed max_health)
     # Update character health
-    pass
+    
 
     if is_character_dead(character):
         raise CharacterDeadError("Cannot heal: character is dead")
@@ -407,7 +410,7 @@ def is_character_dead(character):
     Returns: True if dead, False if alive
     """
     # TODO: Implement death check
-    pass
+    
 
     try:
         return int(character.get("health", 0)) <= 0
@@ -423,7 +426,7 @@ def revive_character(character):
     """
     # TODO: Implement revival
     # Restore health to half of max_health
-    pass
+    
 
     if not is_character_dead(character):
         return False
@@ -452,7 +455,7 @@ def validate_character_data(character):
     # Check all required keys exist
     # Check that numeric values are numbers
     # Check that lists are actually lists
-    pass
+    
 
     required = [
         "name", "class", "level", "health", "max_health",
