@@ -2,9 +2,10 @@
 COMP 163 - Project 3: Quest Chronicles
 Game Data Module - Starter Code
 
-Name: [Your Name Here]
+Name: Tajanuie Chaplain
 
-AI Usage: [Document any AI assistance used]
+AI Usage: This file was completed with assistance from ChatGPT in 
+structureing modular data loading functions and parsing text blocks into dictionaries.
 
 This module handles loading and validating game data from text files.
 """

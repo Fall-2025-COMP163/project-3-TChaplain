@@ -149,3 +149,107 @@ Test files are provided for your learning but are protected. Modifying test file
 - Academic integrity investigation
 
 You can view tests to understand requirements, but any modifications will be automatically detected.
+
+
+## Module Architecture
+
+The project is divided into modules for clarity and maintainability:
+
+quest_chronicles/
+├── main.py                     # Game launcher; entry point for playing
+├── character_manager.py        # Handles creation, saving, loading, deleting, and managing characters
+├── inventory_system.py         # Manages items, inventory, and equipment
+├── quest_handler.py            # Handles quest tracking, completion, and rewards
+├── combat_system.py            # Implements battle mechanics and enemy interactions
+├── game_data.py                # Loads static game data (quests, items) and validates save data
+├── custom_exceptions.py        # Defines all custom exceptions for the game
+├── data/
+│   ├── quests.txt             # Quest definitions
+│   ├── items.txt              # Item database
+│   └── save_games/            # Player save files (created automatically)
+├── tests/
+│   ├── test_module_structure.py       # Module organization tests
+│   ├── test_exception_handling.py     # Exception handling tests
+│   └── test_game_integration.py       # Integration tests
+└── README.md                   # Project documentation
+
+
+- Each module has a clearly defined role, making debugging and future expansion easier.
+
+- character_manager.py handles all file I/O with save files and enforces strict data validation.
+
+- custom_exceptions.py allows consistent error handling across all modules.
+
+## Exception Strategy
+
+Custom exceptions ensure predictable error handling and guide player interactions:
+
+Exception	Raised When	Purpose
+InvalidCharacterClassError	Player attempts to create a character with an invalid class	Prevent invalid character creation
+CharacterNotFoundError	Player tries to load/delete a non-existent character	Provides clear feedback when save is missing
+SaveFileCorruptedError	Save file cannot be read due to I/O errors	Ensures game stability on file issues
+InvalidSaveDataError	Save file contains malformed or unexpected data	Prevents corrupted saves from breaking gameplay
+CharacterDeadError	Actions attempted on a dead character (healing, XP gain)	Enforces game rules around character death
+
+All numeric and list fields are strictly validated during loading to avoid runtime crashes.
+
+Unknown keys in save files immediately raise InvalidSaveDataError to enforce strict format adherence.
+
+## Design Choices
+
+Strict Save Validation: Save files must contain all required fields; unknown or malformed lines are rejected. This ensures predictable game state and reliable testing.
+
+Modular Approach: Each feature (combat, inventory, quests) is in its own module for maintainability.
+
+Class-Based Stats: Characters have pre-defined base stats for balance but are fully adjustable for creativity.
+
+Flexible Leveling: Experience points allow multiple level-ups in one action; stats automatically increase per level.
+
+List Serialization: Inventories and quest lists are saved as comma-separated strings for simplicity and easy parsing.
+
+## AI Usage
+
+I used ChatGPT to help debug load_character() indentation issues and to ensure proper exception handling for malformed save files.
+
+AI guidance helped correct parsing logic to iterate through each line correctly and validate numeric/list fields.
+
+All logic decisions and final code were reviewed and tested manually to ensure accuracy.
+
+## How to Play
+
+Clone your repository:
+
+git clone [your-personal-repo-url]
+cd [repository-name]
+
+
+Run the game:
+
+python main.py
+
+
+Features you can use in-game:
+
+Create a new character (Warrior, Mage, Rogue, Cleric).
+
+Save and load characters.
+
+Gain experience and level up, increasing stats.
+
+Manage gold, inventory, and quests.
+
+Engage in combat with enemies (goblin, orc, dragon).
+
+Game data files:
+
+data/quests.txt – Contains quest definitions.
+
+data/items.txt – Contains items and their effects.
+
+data/save_games/ – Stores saved character files automatically.
+
+Handling errors:
+
+If a save file is corrupted or missing, the game provides clear messages via custom exceptions.
+
+Actions like healing or XP gain are blocked for dead characters to enforce game rules.

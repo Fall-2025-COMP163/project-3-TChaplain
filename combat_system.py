@@ -2,9 +2,10 @@
 COMP 163 - Project 3: Quest Chronicles
 Combat System Module - Starter Code
 
-Name: [Your Name Here]
+Name: Tajaunie Chaplain
 
-AI Usage: [Document any AI assistance used]
+AI Usage: Completed with assistance from ChatGPT to design a simple,
+test-friendly turn-based combat system and class abilities.
 
 Handles combat mechanics
 """

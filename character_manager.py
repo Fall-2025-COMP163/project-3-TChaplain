@@ -2,9 +2,10 @@
 COMP 163 - Project 3: Quest Chronicles
 Character Manager Module - Starter Code
 
-Name: [Your Name Here]
+Name: Tajaunie Chaplain
 
-AI Usage: [Document any AI assistance used]
+AI Usage: This file was completed with assistance from ChatGPT to implement character operations consistent
+with project requirements and custom exception usage.
 
 This module handles character creation, loading, and saving.
 """

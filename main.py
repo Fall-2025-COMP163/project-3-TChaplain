@@ -2,9 +2,9 @@
 COMP 163 - Project 3: Quest Chronicles
 Main Game Module - Starter Code
 
-Name: [Your Name Here]
+Name: Tajaunie Chaplain
 
-AI Usage: [Document any AI assistance used]
+AI Usage: Assisted by ChatGPT
 
 This is the main game file that ties all modules together.
 Demonstrates module integration and complete game flow.
